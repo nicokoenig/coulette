@@ -1,5 +1,6 @@
 console.log("Welcome to Coulette");
-changeRandomColor();
+testColor = changeRandomColor();
+console.log(testColor);
 
 let button = document.querySelector("#addColor");
 let button2 = document.querySelector("#saveColor");
@@ -17,7 +18,7 @@ function saveColor() {
   // colorOutput wird die zu speichernde Farbe
   const main = document.querySelector("main");
   const header = document.querySelector("header");
-  let colorOutput = header.style.backgroundColor;
+  let colorOutput = testColor;
 
   // ein neues Element p mit der Hintergrund coloroutput und Beschriftung wird erzeugt
   const para = document.createElement("p");
@@ -47,22 +48,16 @@ function switchColor() {
   }
 }
 
-/*
-function colorOutput() {
-  const header = document.querySelector("header");
-  let colorOutput = header.style.backgroundColor;
-  console.log("output: " + colorOutput);
-}*/
-
 function changeRandomColor() {
-  let bgColor = randomColor();
+  testColor = randomColor();
   const header = document.querySelector("header");
-  header.style.backgroundColor = bgColor;
+  header.style.backgroundColor = testColor;
   //console.log(bgColor);
   const ausgabe = document.querySelector("p");
   //console.log(ausgabe);
-  ausgabe.innerHTML = "Farbe: " + bgColor;
+  ausgabe.innerHTML = "Farbe: " + testColor;
   //colorOutput();
+  return testColor;
 }
 
 function randomColor() {
