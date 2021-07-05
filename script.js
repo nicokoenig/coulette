@@ -26,6 +26,7 @@ function saveColor() {
   para.appendChild(node);
   main.appendChild(para);
   para.style.backgroundColor = colorOutput;
+  para.style.fontSize = "2rem";
   para.id = "ausgabe";
 
   // es wird gesichert, dass die neue Farbe an erster Stelle der gespeicherten Farben steht.
@@ -40,7 +41,6 @@ function switchColor() {
   const header = document.querySelector("header");
   const currentBackgroundColor = header.style.backgroundColor.toLowerCase();
   let bgColor = header.style.backgroundColor;
-  //console.log(bgColor);
   if (currentBackgroundColor === color) {
     header.style.backgroundColor = "lemonchiffon";
   } else {
@@ -52,11 +52,9 @@ function changeRandomColor() {
   testColor = randomColor();
   const header = document.querySelector("header");
   header.style.backgroundColor = testColor;
-  //console.log(bgColor);
   const ausgabe = document.querySelector("p");
-  //console.log(ausgabe);
-  ausgabe.innerHTML = "Farbe: " + testColor;
-  //colorOutput();
+  ausgabe.textContent = "Farbe: " + testColor;
+  ausgabe.style.fontSize = "1.25rem";
   return testColor;
 }
 
