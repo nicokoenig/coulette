@@ -5,7 +5,6 @@ const colors = [];
 
 let currentColor = null;
 currentColor = changeRandomColor();
-console.log(currentColor);
 
 let button = document.querySelector("#addColor");
 let button2 = document.querySelector("#saveColor");
@@ -27,7 +26,6 @@ function saveColor() {
   buttonStatus();
   // colorOutput wird die zu speichernde Farbe
 
-  console.log(colors.length);
   if (colors.includes(currentColor) === false) {
     colors.push(currentColor);
     const cList = document.querySelector("#colorList");
@@ -51,7 +49,6 @@ function saveColor() {
 }
 
 function buttonStatus() {
-  console.log("komme ich in den check");
   const button2 = document.querySelector("#saveColor");
   if (colors.includes(currentColor)) {
     button2.setAttribute("disabled", "");
