@@ -20,6 +20,7 @@ buttonStatus();
 function delColor() {
   document.getElementById("ausgabe").remove();
   colors.pop();
+  buttonStatus();
 }
 
 function saveColor() {
