@@ -2,6 +2,7 @@ console.log("Welcome to Coulette");
 
 // Initialisierung der globalen BG-Variablen + Array + erster Hintergrund
 const colors = [];
+
 let currentColor = null;
 currentColor = changeRandomColor();
 console.log(currentColor);
@@ -18,6 +19,7 @@ buttonStatus();
 
 function delColor() {
   document.getElementById("ausgabe").remove();
+  colors.pop();
 }
 
 function saveColor() {
@@ -51,10 +53,8 @@ function buttonStatus() {
   console.log("komme ich in den check");
   const button2 = document.querySelector("#saveColor");
   if (colors.includes(currentColor)) {
-    console.log(colors.includes(currentColor));
     button2.setAttribute("disabled", "");
   } else {
-    console.log("komme ich zum 2. check?");
     button2.removeAttribute("disabled");
   }
 }
