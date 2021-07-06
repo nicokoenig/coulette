@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  border: 2px deepskyblue solid;
+  border: 4px rgb(114, 171, 190) solid;
   width: 60vmax;
   margin: 10px auto;
   min-width: 450px;
@@ -64,4 +64,9 @@ h1 {
 
 .output {
   padding-right: 1rem;
+}
+
+#colorList {
+  list-style: none;
+  padding-left: 0rem;
 }

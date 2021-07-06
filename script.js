@@ -1,6 +1,10 @@
 console.log("Welcome to Coulette");
-testColor = changeRandomColor();
-console.log(testColor);
+
+// Initialisierung der globalen BG-Variablen + Array + erster Hintergrund
+const colors = [];
+let currentColor = null;
+currentColor = changeRandomColor();
+console.log(currentColor);
 
 let button = document.querySelector("#addColor");
 let button2 = document.querySelector("#saveColor");
@@ -10,30 +14,49 @@ button.addEventListener("click", changeRandomColor);
 button2.addEventListener("click", saveColor);
 button3.addEventListener("click", delColor);
 
+buttonStatus();
+
 function delColor() {
   document.getElementById("ausgabe").remove();
 }
 
 function saveColor() {
+  buttonStatus();
   // colorOutput wird die zu speichernde Farbe
-  const main = document.querySelector("main");
-  const header = document.querySelector("header");
-  let colorOutput = testColor;
 
-  // ein neues Element p mit der Hintergrund coloroutput und Beschriftung wird erzeugt
-  const para = document.createElement("p");
-  const node = document.createTextNode(colorOutput);
-  para.appendChild(node);
-  main.appendChild(para);
-  para.style.backgroundColor = colorOutput;
-  para.style.fontSize = "2rem";
-  para.id = "ausgabe";
+  console.log(colors.length);
+  if (colors.includes(currentColor) === false) {
+    colors.push(currentColor);
+    const cList = document.querySelector("#colorList");
+    let colorOutput = currentColor;
 
-  // es wird gesichert, dass die neue Farbe an erster Stelle der gespeicherten Farben steht.
+    // ein neues Element p mit der Hintergrund coloroutput und Beschriftung wird erzeugt
+    const para = document.createElement("li");
+    const node = document.createTextNode(colorOutput);
+    para.appendChild(node);
 
-  const element = document.querySelector("main");
-  const child = document.getElementById("ausgabe");
-  element.insertBefore(para, child);
+    para.style.backgroundColor = colorOutput;
+    para.style.fontSize = "2rem";
+    para.id = "ausgabe";
+
+    // es wird gesichert, dass die neue Farbe an erster Stelle der gespeicherten Farben steht.
+
+    const element = document.querySelector("#colorList");
+    const child = document.getElementById("ausgabe");
+    element.insertBefore(para, child);
+  }
+}
+
+function buttonStatus() {
+  console.log("komme ich in den check");
+  const button2 = document.querySelector("#saveColor");
+  if (colors.includes(currentColor)) {
+    console.log(colors.includes(currentColor));
+    button2.setAttribute("disabled", "");
+  } else {
+    console.log("komme ich zum 2. check?");
+    button2.removeAttribute("disabled");
+  }
 }
 
 function switchColor() {
@@ -49,13 +72,14 @@ function switchColor() {
 }
 
 function changeRandomColor() {
-  testColor = randomColor();
+  currentColor = randomColor();
   const header = document.querySelector("header");
-  header.style.backgroundColor = testColor;
+  header.style.backgroundColor = currentColor;
   const ausgabe = document.querySelector("p");
-  ausgabe.textContent = "Farbe: " + testColor;
+  ausgabe.textContent = "Farbe: " + currentColor;
   ausgabe.style.fontSize = "1.25rem";
-  return testColor;
+  buttonStatus();
+  return currentColor;
 }
 
 function randomColor() {
