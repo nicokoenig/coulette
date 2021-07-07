@@ -1,9 +1,24 @@
+// beim Löschen einzelner Farben löscht dder Button den gesamten local Storage-Speicher
+
 console.log("Welcome to Coulette");
 
 // Initialisierung der globalen BG-Variablen + Array + erster Hintergrund
-const colors = [];
-
+let colors = [];
+let initColor = [];
 let currentColor = null;
+
+storageColors();
+
+function storageColors() {
+  if (localStorage.getItem("storageColors") !== null) {
+    initColor = JSON.parse(localStorage.getItem("storageColors"));
+    for (i = 0; i < initColor.length; i++) {
+      currentColor = initColor[i];
+      console.log(currentColor);
+      saveColor();
+    }
+  }
+}
 currentColor = changeRandomColor();
 
 let button = document.querySelector("#addColor");
@@ -12,7 +27,7 @@ let button3 = document.querySelector("#delColor");
 
 button.addEventListener("click", changeRandomColor);
 button2.addEventListener("click", saveColor);
-button3.addEventListener("click", delColor);
+// button3.addEventListener("click", delColor);
 
 buttonStatus();
 
@@ -26,20 +41,19 @@ function delColor() {
 function delThisColor() {
   const parent = document.activeElement.parentNode;
   const delThisColor = parent.getAttribute("data-color");
-  //console.log(delThisColor);
 
   //array-Vergleich: Farbe enthalten -> Stelle wird gesucht, Array-Eintrag und Elternelement gelöscht
   if (colors.includes(delThisColor)) {
     for (i = 0; i < colors.length; i++) {
-      //console.log(delThisColor === colors[i]);
       if (colors[i] === delThisColor) {
         colors.splice(i, 1);
         parent.remove();
       }
-      //console.log(colors.length + colors);
     }
     buttonStatus();
   }
+
+  localStorage.setItem("storageColors", JSON.stringify(colors));
 
   buttonStatus();
 }
@@ -47,7 +61,7 @@ function delThisColor() {
 function saveColor() {
   buttonStatus();
   // colorOutput wird die zu speichernde Farbe
-
+  console.log("test");
   if (colors.includes(currentColor) === false) {
     colors.push(currentColor);
     const cList = document.querySelector("#colorList");
@@ -79,6 +93,10 @@ function saveColor() {
     const element = document.querySelector("#colorList");
     const child = document.getElementById("ausgabe");
     element.insertBefore(para, child);
+
+    // Übergabe des Arrays an den local storage
+
+    localStorage.setItem("storageColors", JSON.stringify(colors));
   }
 }
 

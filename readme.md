@@ -10,3 +10,4 @@ Vorbereitung des Coulette-Programms
 - every list item has its own button - array entries will be deleted.
 - deleted the overall del-button
 - style of del-button incl. position
+- (evening): implented localStorage
