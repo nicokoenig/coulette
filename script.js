@@ -26,17 +26,17 @@ function delColor() {
 function delThisColor() {
   const parent = document.activeElement.parentNode;
   const delThisColor = parent.getAttribute("data-color");
-  console.log(delThisColor);
+  //console.log(delThisColor);
 
   //array-Vergleich: Farbe enthalten -> Stelle wird gesucht, Array-Eintrag und Elternelement gelöscht
   if (colors.includes(delThisColor)) {
     for (i = 0; i < colors.length; i++) {
-      console.log(delThisColor === colors[i]);
+      //console.log(delThisColor === colors[i]);
       if (colors[i] === delThisColor) {
         colors.splice(i, 1);
         parent.remove();
       }
-      console.log(colors.length + colors);
+      //console.log(colors.length + colors);
     }
     buttonStatus();
   }
