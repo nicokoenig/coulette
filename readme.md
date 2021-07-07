@@ -5,3 +5,7 @@ Vorbereitung des Coulette-Programms
 
 - 06.07. modified code - colors in list element
 - doublify check
+
+- 07.07.: modified del color:
+- every list item has its own button - array entries will be deleted.
+- deleted the overall del-button

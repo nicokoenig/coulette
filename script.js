@@ -12,13 +12,35 @@ let button3 = document.querySelector("#delColor");
 
 button.addEventListener("click", changeRandomColor);
 button2.addEventListener("click", saveColor);
-button3.addEventListener("click", delColor);
+//button3.addEventListener("click", delColor);
 
 buttonStatus();
 
+// Löscht den letzten Array-Eintrag
 function delColor() {
   document.getElementById("ausgabe").remove();
   colors.pop();
+  buttonStatus();
+}
+
+function delThisColor() {
+  const parent = document.activeElement.parentNode;
+  const delThisColor = parent.getAttribute("data-color");
+  console.log(delThisColor);
+
+  //array-Vergleich: Farbe enthalten -> Stelle wird gesucht, Array-Eintrag und Elternelement gelöscht
+  if (colors.includes(delThisColor)) {
+    for (i = 0; i < colors.length; i++) {
+      console.log(delThisColor === colors[i]);
+      if (colors[i] === delThisColor) {
+        colors.splice(i, 1);
+        parent.remove();
+      }
+      console.log(colors.length + colors);
+    }
+    buttonStatus();
+  }
+
   buttonStatus();
 }
 
@@ -31,14 +53,27 @@ function saveColor() {
     const cList = document.querySelector("#colorList");
     let colorOutput = currentColor;
 
-    // ein neues Element p mit der Hintergrund coloroutput und Beschriftung wird erzeugt
+    // ein neuer Listeneintrag mit der Hintergrund coloroutput und Beschriftung wird erzeugt
     const para = document.createElement("li");
+    const newButton = document.createElement("button");
+
     const node = document.createTextNode(colorOutput);
+    const buttonNode = document.createTextNode("delete");
+    newButton.appendChild(buttonNode);
     para.appendChild(node);
+    para.appendChild(newButton);
 
     para.style.backgroundColor = colorOutput;
     para.style.fontSize = "2rem";
+    para.setAttribute("data-color", colorOutput);
+
     para.id = "ausgabe";
+
+    newButton.className = "myButton";
+    newButton.id = "delEntryColor";
+    newButton.style.marginLeft = "3rem";
+    newButton.addEventListener("click", delThisColor);
+    //newButton.style.float = "right";
 
     // es wird gesichert, dass die neue Farbe an erster Stelle der gespeicherten Farben steht.
 
