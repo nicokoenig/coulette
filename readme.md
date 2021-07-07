@@ -9,3 +9,4 @@ Vorbereitung des Coulette-Programms
 - 07.07.: modified del color:
 - every list item has its own button - array entries will be deleted.
 - deleted the overall del-button
+- style of del-button incl. position

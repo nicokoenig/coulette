@@ -12,7 +12,7 @@ let button3 = document.querySelector("#delColor");
 
 button.addEventListener("click", changeRandomColor);
 button2.addEventListener("click", saveColor);
-//button3.addEventListener("click", delColor);
+button3.addEventListener("click", delColor);
 
 buttonStatus();
 
@@ -69,11 +69,10 @@ function saveColor() {
 
     para.id = "ausgabe";
 
-    newButton.className = "myButton";
+    newButton.className = "myDelButton";
     newButton.id = "delEntryColor";
     newButton.style.marginLeft = "3rem";
     newButton.addEventListener("click", delThisColor);
-    //newButton.style.float = "right";
 
     // es wird gesichert, dass die neue Farbe an erster Stelle der gespeicherten Farben steht.
 
