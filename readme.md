@@ -11,3 +11,6 @@ Vorbereitung des Coulette-Programms
 - deleted the overall del-button
 - style of del-button incl. position
 - (evening): implented localStorage
+
+- 08.07: small modifications
+- delete all

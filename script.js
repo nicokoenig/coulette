@@ -23,11 +23,11 @@ currentColor = changeRandomColor();
 
 let button = document.querySelector("#addColor");
 let button2 = document.querySelector("#saveColor");
-let button3 = document.querySelector("#delColor");
+let button3 = document.querySelector("#deleteAll");
 
 button.addEventListener("click", changeRandomColor);
 button2.addEventListener("click", saveColor);
-// button3.addEventListener("click", delColor);
+button3.addEventListener("click", deleteAllColors);
 
 buttonStatus();
 
@@ -36,6 +36,18 @@ function delColor() {
   document.getElementById("ausgabe").remove();
   colors.pop();
   buttonStatus();
+}
+
+// Löscht alle Farben
+
+function deleteAllColors() {
+  const list = document.querySelector("#colorList");
+  var ausgabe = null;
+  for (i = 0; i < colors.length; i++) {
+    ausgabe = document.querySelector("#ausgabe").remove();
+  }
+  colors = [];
+  localStorage.setItem("storageColors", JSON.stringify(colors));
 }
 
 function delThisColor() {
@@ -61,7 +73,6 @@ function delThisColor() {
 function saveColor() {
   buttonStatus();
   // colorOutput wird die zu speichernde Farbe
-  console.log("test");
   if (colors.includes(currentColor) === false) {
     colors.push(currentColor);
     const cList = document.querySelector("#colorList");
